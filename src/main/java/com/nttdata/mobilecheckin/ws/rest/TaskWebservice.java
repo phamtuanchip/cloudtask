@@ -146,7 +146,7 @@ public class TaskWebservice {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Task update(Task t)
+	public Task updateTask(Task t)
 	{
 		Task utask = t;
 		utask.setName(t.getName() + "updated");
