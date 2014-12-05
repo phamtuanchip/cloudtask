@@ -38,8 +38,9 @@
 	</bean>
 	
 	
-	<bean id="runMeTask" class="com.nttdata.mobilecheckin.schedule.RunMeTask" />
-
+	<bean id="runMeTask" class="com.nttdata.mobilecheckin.schedule.RunMeTask">
+     <property name="taskServiceF" ref="taskServiceF"></property>
+    </bean>
 	<!-- Spring Quartz -->
 	<bean name="runMeJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 

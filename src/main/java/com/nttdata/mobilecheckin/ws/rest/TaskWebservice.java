@@ -35,7 +35,7 @@ public class TaskWebservice {
 	 
 
 	private  TaskService InstanceService(){
-		return getTaskServiceF().getTaskService();
+		return taskServiceF.getTaskService();
 	}
 	
 	// User Rest API
@@ -129,6 +129,17 @@ public class TaskWebservice {
 		return new Task();
 	}
 	
+	@Path("/task/create")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Task createTask(Task t)
+	{
+		Task utask = t;
+		utask.setName(t.getName() + "updated");
+		System.out.println("test =====");
+		return utask;
+	}
 
 	@Path("/task/list")
 	@GET

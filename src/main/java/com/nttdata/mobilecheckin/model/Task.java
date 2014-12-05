@@ -8,67 +8,70 @@ public class Task implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2733976798890186613L;
-	public   long ID;
-	public long getID() {
-		return ID;
-	}
-	public void setID(long iD) {
-		ID = iD;
-	}
+	private   long id;
+	private   String name;
+	private   int pri;
+	private   java.util.Date date;
+	private   boolean remide;
+	private   String add;
+	private   String lat;
+	private   String lgn;
+	private   boolean remided;
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
-	public int getPRI() {
-		return PRI;
+	public int getPri() {
+		return pri;
 	}
-	public void setPRI(int pRI) {
-		PRI = pRI;
+	public void setPri(int pri) {
+		this.pri = pri;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	public java.util.Date getDate() {
-		return Date;
+		return date;
 	}
 	public void setDate(java.util.Date date) {
-		Date = date;
+		this.date = date;
 	}
 	public boolean isRemide() {
-		return Remide;
+		return remide;
 	}
 	public void setRemide(boolean remide) {
-		Remide = remide;
-	}
-	public String getAdd() {
-		return Add;
-	}
-	public void setAdd(String add) {
-		Add = add;
+		this.remide = remide;
 	}
 	public String getLat() {
-		return Lat;
+		return lat;
 	}
 	public void setLat(String lat) {
-		Lat = lat;
+		this.lat = lat;
 	}
 	public String getLgn() {
-		return Lgn;
+		return lgn;
 	}
 	public void setLgn(String lgn) {
-		Lgn = lgn;
+		this.lgn = lgn;
+	}
+	public String getAdd() {
+		return add;
+	}
+	public void setAdd(String add) {
+		this.add = add;
 	}
 	public boolean isRemided() {
-		return Remided;
+		return remided;
 	}
 	public void setRemided(boolean remided) {
-		Remided = remided;
+		this.remided = remided;
 	}
-	public   String Name;
-	public   int PRI;
-	public   java.util.Date Date;
-	public   boolean Remide;
-	public   String Add;
-	public   String Lat;
-	public   String Lgn;
-	public   boolean Remided;
+	
+ 
+	
 }
