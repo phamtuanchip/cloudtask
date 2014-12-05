@@ -98,6 +98,22 @@ public class TaskServiceImpl implements TaskService{
 		return null;
 	}
 
+
+	@Override
+	public com.nttdata.mobilecheckin.model.Task update(
+			com.nttdata.mobilecheckin.model.Task t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<com.nttdata.mobilecheckin.model.Task> listTaskBy(
+			com.nttdata.mobilecheckin.model.Task t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	 
 
 }

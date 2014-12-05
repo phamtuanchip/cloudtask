@@ -13,14 +13,14 @@ public class TaskMapper implements RowMapper<Task>{
 	 
 		
 	public static final String ID = "id";
-	public static final String Name = "Name";
-	public static final String PRI = "" ;
-	public static final String Date = "";
+	public static final String Name = "mame";
+	public static final String PRI = "priority" ;
+	public static final String Date = "date";
 	public static final String Remide = "isReminder";
-	public static final String Add = "role";
-	public static final String Lat = "role";
-	public static final String Lgn = "role";
-	public static final String 	Remided = "role";
+	public static final String Add = "address";
+	public static final String Lat = "latitude";
+	public static final String Lgn = "longitude";
+	public static final String 	Remided = "isRimided";
 
 		
 	@Override

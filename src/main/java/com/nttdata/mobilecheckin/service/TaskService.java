@@ -23,4 +23,7 @@ public interface TaskService {
 	// Task API
 	public Task getTask(long id) ;
 	public List<Task> getTasks() ;
+	
+	public Task update(Task t);
+	public List<Task> listTaskBy(Task t);
 }
