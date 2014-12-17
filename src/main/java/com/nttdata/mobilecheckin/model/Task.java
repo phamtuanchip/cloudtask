@@ -1,6 +1,7 @@
 package com.nttdata.mobilecheckin.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Task implements Serializable {
 	
@@ -11,12 +12,22 @@ public class Task implements Serializable {
 	private   long id;
 	private   String name;
 	private   int pri;
-	private   java.util.Date date;
+	private   Date date;
 	private   boolean remide;
 	private   String add;
 	private   String lat;
 	private   String lgn;
 	private   boolean remided;
+	public Task(){
+		
+	}
+	public Task(long id, String name, Date d, boolean hasRemind){
+		this.id = id;
+		this.name = name ;
+		this.date = d;
+		this.remide = hasRemind;
+	}
+	
 	public String getName() {
 		return name;
 	}

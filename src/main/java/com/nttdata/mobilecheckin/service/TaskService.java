@@ -1,6 +1,5 @@
 package com.nttdata.mobilecheckin.service;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.naming.AuthenticationException;
