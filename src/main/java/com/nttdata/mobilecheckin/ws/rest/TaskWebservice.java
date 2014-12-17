@@ -40,6 +40,29 @@ public class TaskWebservice {
 	}
 	
 	// User Rest API
+	@Path("/user/register")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User register(@Context HttpServletRequest req, @Context HttpHeaders httpHeaders, User userLogin) {
+
+		HttpSession session= req.getSession(true);
+		
+		User user = null;
+		LogShow.getLogDebug("start check login:"+userLogin.getUsername());
+		try{
+			user = InstanceService().register(userLogin);
+		}catch(Exception ex){
+			LogShow.getLogDebug("start check login:"+userLogin.getUsername());
+		}
+		if(user != null){
+			session.setAttribute(user.getUsername(), user.getUsername());
+			LogShow.getLogDebug("return id:"+user.getUsername());
+			user.setId(user.getUsername());
+		} 
+		return user;
+	}
+	
 	@Path("/user/login")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

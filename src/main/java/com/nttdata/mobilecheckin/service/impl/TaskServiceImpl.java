@@ -120,5 +120,12 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 
+	@Override
+	public User register(User u) {
+		// TODO Auto-generated method stub
+		return u;
+	}
+
+
 
 }

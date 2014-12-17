@@ -19,6 +19,7 @@ public interface TaskService {
 
 	public User login(User u) throws AuthenticationException;
 	
+	public User register(User u);
 	// Task API
 	public Task getTask(long id) ;
 	public List<Task> getTasks() ;

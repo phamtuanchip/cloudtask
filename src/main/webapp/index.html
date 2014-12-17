@@ -57,15 +57,33 @@ $(function(){
 			type : 'GET',
 			url: url,
 			contentType: 'application/json',
-			success: callback,
+			success: listdb,
 			error: function(reg, status, ex){},
 			timeout: 60000
 		});
 		
 });
 	
-function callback(data){
-	 console.log('go there');
+function listdb(data){
+	 console.log('list db success');
+}	
+
+$(function(){
+	 
+	var url = "service/rest/user/register";
+	$.ajax({
+		type : 'POST',
+		url: url,
+		contentType: 'application/json',
+		success: registerdone,
+		error: function(reg, status, ex){},
+		timeout: 60000
+	});
+	
+});
+
+function registerdone(data){
+ console.log('registered');
 }	
 	
 $(function(){
