@@ -47,7 +47,7 @@ public class TaskWebservice {
 	public User register(@Context HttpServletRequest req, @Context HttpHeaders httpHeaders, User userLogin) {
 
 		HttpSession session= req.getSession(true);
-		
+		System.out.println("=========userLogin" + userLogin.toString());
 		User user = null;
 		LogShow.getLogDebug("start check login:"+userLogin.getUsername());
 		try{
@@ -113,7 +113,7 @@ public class TaskWebservice {
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUserInJSON(@Context HttpServletRequest req, @QueryParam("uid") String username) throws AuthenticationException {
 
-			if(getTaskServiceF() != null) {
+			if(getTaskServiceF() != null && username != null && !username.isEmpty()) {
 				User user = InstanceService().findByUsername(username);
 				LogShow.getLogDebug("start search:"+user);
 				HttpSession session= req.getSession(true);
@@ -122,7 +122,7 @@ public class TaskWebservice {
 				}
 			 return	user;
 			}
-		return null;
+		return new User();
 
 	}
 	@POST

@@ -71,10 +71,14 @@ function listdb(data){
 $(function(){
 	 
 	var url = "service/rest/user/register";
+	var postDb =JSON.stringify({"username":"pham","password":"123","enabled":"true","roleCode":"1","roleString":"Suppervisor","cityCode":"0","hostAirlines":"0","id":"0"});
+	console.log('postDb ' + postDb)
 	$.ajax({
 		type : 'POST',
 		url: url,
-		contentType: 'application/json',
+		contentType: "application/json; charset=utf-8",
+        dataType: "json",
+		data:postDb,
 		success: registerdone,
 		error: function(reg, status, ex){},
 		timeout: 60000
