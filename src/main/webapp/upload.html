@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	 <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional: Include the jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css">
+
+<!-- Optional: Incorporate the Bootstrap JavaScript plugins -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+ 
+ 
+ 
+ 
+<script>
+$(function(){
+	$('#upload').on('click', function() {
+		console.log('click me');
+		var url = "service/rest/file/upload";
+		var file_data = $('#uploadform').prop('file')[0];   
+		var form_data = new FormData();                  
+		form_data.append('file', file_data)
+		console.log(form_data);                             
+		$.ajax({
+					url: url,  
+					dataType: 'text',   
+					cache: false,
+					contentType: false,
+					enctype: 'multipart/form-data',
+					processData: false,
+					data: form_data,                         
+					type: 'post',
+					success: function(php_script_response){
+							console.log(php_script_response);  
+					}
+		 });
+	});
+
+ 
+ });
+ 
+ 
+
+ 
+</script>
+  </head>
+  <body> 
+   <div class="container">
+	 <p>Upload your picture</p>
+		<form class="form-inline" role="form" id="uploadform" enctype="multipart/form-data">
+			<label for="file">Select file</label>
+			<input type="file" class="form-control" id="file"/>
+			<button type="button" class="btn btn-default" id="upload" >upload</button>
+		</form>
+	</div>
+  </body>
+</html>

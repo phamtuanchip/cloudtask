@@ -1,5 +1,10 @@
 package com.nttdata.mobilecheckin.ws.rest;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.naming.AuthenticationException;
@@ -18,6 +23,8 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +37,7 @@ import com.nttdata.mobilecheckin.service.TaskServiceFactory;
 @Path("/rest")
 @Component
 public class TaskWebservice {
+	 private static final String SERVER_UPLOAD_LOCATION_FOLDER = "D://projects/cloudtask/";
 	@Autowired
 	private TaskServiceFactory taskServiceF;
 	 
@@ -37,6 +45,49 @@ public class TaskWebservice {
 
 	private  TaskService InstanceService(){
 		return taskServiceF.getTaskService();
+	}
+	
+	//File Rest API
+	
+	@POST
+	@Path("file/upload")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	 
+	public Response uploadFile(
+			@FormDataParam("file") InputStream fileInputStream,
+			@FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
+
+		String filePath = SERVER_UPLOAD_LOCATION_FOLDER	+"test";
+
+		// save the file to the server
+		saveFile(fileInputStream, filePath);
+
+		String output = "File saved to server location : " + filePath;
+
+		return Response.status(200).entity(output).build();
+
+	}
+
+	// save uploaded file to a defined location on the server
+	private void saveFile(InputStream uploadedInputStream,
+			String serverLocation) {
+
+		try {
+			OutputStream outpuStream = new FileOutputStream(new File(serverLocation));
+			int read = 0;
+			byte[] bytes = new byte[1024];
+
+			outpuStream = new FileOutputStream(new File(serverLocation));
+			while ((read = uploadedInputStream.read(bytes)) != -1) {
+				outpuStream.write(bytes, 0, read);
+			}
+			outpuStream.flush();
+			outpuStream.close();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 	
 	// User Rest API
