@@ -62,11 +62,14 @@ public class TaskWebservice {
 			@FormDataParam("file") InputStream fileInputStream,
 			@FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
 		String fileName = GregorianCalendar.getInstance().getTimeInMillis()+"_"+ contentDispositionHeader.getFileName();
-		String filePath = request.getServletContext().getRealPath(SERVER_UPLOAD_LOCATION_FOLDER)+"\\"+ fileName;
+		String OS = System.getProperty("os.name");
+		String path = "/";
+		if(OS.toLowerCase().startsWith("windows")) path = "\\";
+		String filePath = request.getServletContext().getRealPath(SERVER_UPLOAD_LOCATION_FOLDER)+path+ fileName;
 		System.out.println("upload....");
 		// save the file to the server
 		saveFile(fileInputStream, filePath);
-
+		
 		String downloadLink =  request.getRequestURI().replace("upload", "download") +"/" + fileName;
 
 		return new UploadFile(new Date(),"system",filePath, downloadLink); 
