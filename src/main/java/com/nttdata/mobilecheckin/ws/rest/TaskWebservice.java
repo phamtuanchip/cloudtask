@@ -65,8 +65,16 @@ public class TaskWebservice {
 		String OS = System.getProperty("os.name");
 		String path = "/";
 		if(OS.toLowerCase().startsWith("windows")) path = "\\";
-		String filePath = request.getServletContext().getRealPath(SERVER_UPLOAD_LOCATION_FOLDER)+path+ fileName;
-		System.out.println("upload....");
+		String folderPath = request.getServletContext().getRealPath(SERVER_UPLOAD_LOCATION_FOLDER);
+				
+				File folder = new File(folderPath);
+		if (!folder.exists()) {
+			if (folder.mkdir()) {
+				System.out.println("Directory is created!");
+			}  
+		}
+		String filePath = folder.getAbsolutePath() + path + fileName;
+		System.out.println("upload...." + filePath);
 		// save the file to the server
 		saveFile(fileInputStream, filePath);
 		
