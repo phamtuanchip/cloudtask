@@ -57,8 +57,8 @@ public class TaskWebservice {
 			@FormDataParam("file") InputStream fileInputStream,
 			@FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
 
-		String filePath = SERVER_UPLOAD_LOCATION_FOLDER	+"test";
-
+		String filePath = SERVER_UPLOAD_LOCATION_FOLDER	+ contentDispositionHeader.getFileName();
+		System.out.println("upload....");
 		// save the file to the server
 		saveFile(fileInputStream, filePath);
 
