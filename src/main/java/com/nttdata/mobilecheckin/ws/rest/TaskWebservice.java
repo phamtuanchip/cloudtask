@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.naming.AuthenticationException;
@@ -30,6 +32,7 @@ import org.springframework.stereotype.Component;
 
 import com.nttdata.mobilecheckin.log.LogShow;
 import com.nttdata.mobilecheckin.model.Task;
+import com.nttdata.mobilecheckin.model.UploadFile;
 import com.nttdata.mobilecheckin.model.User;
 import com.nttdata.mobilecheckin.service.TaskService;
 import com.nttdata.mobilecheckin.service.TaskServiceFactory;
@@ -37,7 +40,7 @@ import com.nttdata.mobilecheckin.service.TaskServiceFactory;
 @Path("/rest")
 @Component
 public class TaskWebservice {
-	 private static final String SERVER_UPLOAD_LOCATION_FOLDER = "D://projects/cloudtask/";
+	 private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/uploads";
 	@Autowired
 	private TaskServiceFactory taskServiceF;
 	 
@@ -52,19 +55,19 @@ public class TaskWebservice {
 	@POST
 	@Path("file/upload")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	 
-	public Response uploadFile(
+	@Produces(MediaType.APPLICATION_JSON)
+	public UploadFile uploadFile(@Context HttpServletRequest request,
 			@FormDataParam("file") InputStream fileInputStream,
 			@FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
-
-		String filePath = SERVER_UPLOAD_LOCATION_FOLDER	+ contentDispositionHeader.getFileName();
+		String downloadUrl = GregorianCalendar.getInstance().getTimeInMillis()+"_"+ contentDispositionHeader.getFileName();
+		String filePath = request.getServletContext().getRealPath(SERVER_UPLOAD_LOCATION_FOLDER)+"\\"+ downloadUrl;
 		System.out.println("upload....");
 		// save the file to the server
 		saveFile(fileInputStream, filePath);
-
-		String output = "File saved to server location : " + filePath;
-
-		return Response.status(200).entity(output).build();
+		
+		String output = request.getServletContext().getContextPath() + SERVER_UPLOAD_LOCATION_FOLDER + "/" + downloadUrl;
+		
+		return new UploadFile(new Date(),"system",filePath, output); 
 
 	}
 
