@@ -24,6 +24,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -40,18 +41,19 @@ import com.nttdata.mobilecheckin.service.TaskServiceFactory;
 @Path("/rest")
 @Component
 public class TaskWebservice {
-	 private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/uploads";
+	private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/uploads";
+	private static final String SERVER_DOWNLOAD_URL = "/download";
 	@Autowired
 	private TaskServiceFactory taskServiceF;
-	 
-	 
+
+
 
 	private  TaskService InstanceService(){
 		return taskServiceF.getTaskService();
 	}
-	
+
 	//File Rest API
-	
+
 	@POST
 	@Path("file/upload")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -59,15 +61,29 @@ public class TaskWebservice {
 	public UploadFile uploadFile(@Context HttpServletRequest request,
 			@FormDataParam("file") InputStream fileInputStream,
 			@FormDataParam("file") FormDataContentDisposition contentDispositionHeader) {
-		String downloadUrl = GregorianCalendar.getInstance().getTimeInMillis()+"_"+ contentDispositionHeader.getFileName();
-		String filePath = request.getServletContext().getRealPath(SERVER_UPLOAD_LOCATION_FOLDER)+"\\"+ downloadUrl;
+		String fileName = GregorianCalendar.getInstance().getTimeInMillis()+"_"+ contentDispositionHeader.getFileName();
+		String filePath = request.getServletContext().getRealPath(SERVER_UPLOAD_LOCATION_FOLDER)+"\\"+ fileName;
 		System.out.println("upload....");
 		// save the file to the server
 		saveFile(fileInputStream, filePath);
-		
-		String output = request.getServletContext().getContextPath() + SERVER_UPLOAD_LOCATION_FOLDER + "/" + downloadUrl;
-		
-		return new UploadFile(new Date(),"system",filePath, output); 
+
+		String downloadLink =  request.getRequestURI().replace("upload", "download") +"/" + fileName;
+
+		return new UploadFile(new Date(),"system",filePath, downloadLink); 
+
+	}
+
+	@GET
+	@Path("file/download/{file}")
+	//@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	public Response  downloadFile(@Context HttpServletRequest request, @PathParam(value = "file") String file) {
+		String filePath = request.getServletContext().getRealPath(SERVER_UPLOAD_LOCATION_FOLDER)+"/"+ file;
+		System.out.println("download .." + filePath);
+		File download = new File(filePath);
+		ResponseBuilder response = Response.ok((Object)download);
+		response.header("Content-Disposition", "attachment; " + file);
+		return response.build();
 
 	}
 
@@ -92,7 +108,7 @@ public class TaskWebservice {
 		}
 
 	}
-	
+
 	// User Rest API
 	@Path("/user/register")
 	@POST
@@ -116,7 +132,7 @@ public class TaskWebservice {
 		} 
 		return user;
 	}
-	
+
 	@Path("/user/login")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -124,7 +140,7 @@ public class TaskWebservice {
 	public User checkLogin(@Context HttpServletRequest req, @Context HttpHeaders httpHeaders, User userLogin) {
 
 		HttpSession session= req.getSession(true);
-		
+
 		User user = null;
 		LogShow.getLogDebug("start check login:"+userLogin.getUsername());
 		try{
@@ -139,8 +155,8 @@ public class TaskWebservice {
 		} 
 		return user;
 	}
-	
-	 
+
+
 	@Path("/user/logout")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -161,21 +177,21 @@ public class TaskWebservice {
 			return Response.status(201).entity(result).build();
 		}
 	}
-	
+
 	@GET
 	@Path("/user/search")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUserInJSON(@Context HttpServletRequest req, @QueryParam("uid") String username) throws AuthenticationException {
 
-			if(getTaskServiceF() != null && username != null && !username.isEmpty()) {
-				User user = InstanceService().findByUsername(username);
-				LogShow.getLogDebug("start search:"+user);
-				HttpSession session= req.getSession(true);
-				if(user != null){
-					session.setAttribute(username, username);
-				}
-			 return	user;
+		if(getTaskServiceF() != null && username != null && !username.isEmpty()) {
+			User user = InstanceService().findByUsername(username);
+			LogShow.getLogDebug("start search:"+user);
+			HttpSession session= req.getSession(true);
+			if(user != null){
+				session.setAttribute(username, username);
 			}
+			return	user;
+		}
 		return new User();
 
 	}
@@ -183,30 +199,30 @@ public class TaskWebservice {
 	@Path("/user/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createUserInJSON(User u) {
-		
+
 		String result = "User saved : " + u;
 		return Response.status(201).entity(result).build();
 
 	}
-	
+
 	@Path("/user/authenticate")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public User authenticate(@QueryParam("username") String username, @QueryParam("password") String password)
 	{
-		 
+
 		return new User();
 	}
- 
+
 	@Path("/task/detail/{id}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Task getTask(@PathParam("id") String username)
 	{
-		 
+
 		return new Task();
 	}
-	
+
 	@Path("/task/create")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -231,7 +247,7 @@ public class TaskWebservice {
 		return utask;
 	}
 
-	
+
 	@Path("/task/list")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
