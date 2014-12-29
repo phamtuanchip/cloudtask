@@ -127,6 +127,7 @@
 		<module>countdown</module>
 		<module>profile</module>
 		<module>blog</module>
+		<module>gallery</module>
 	</modules>
 
 	<build>
