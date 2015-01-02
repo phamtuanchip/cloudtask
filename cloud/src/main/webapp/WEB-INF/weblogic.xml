@@ -3,5 +3,5 @@
   	<wls:container-descriptor>
 		<wls:prefer-web-inf-classes>true</wls:prefer-web-inf-classes>
 	</wls:container-descriptor>
-    <wls:context-root>ws-rest</wls:context-root>
+    <wls:context-root>cloudsmart-ui</wls:context-root>
 </wls:weblogic-web-app>
