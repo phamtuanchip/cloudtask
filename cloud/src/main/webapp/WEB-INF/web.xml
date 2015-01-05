@@ -44,7 +44,7 @@
 <!--     </servlet-mapping> -->
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-     <welcome-file>task.html</welcome-file>
+    <welcome-file>task.html</welcome-file>
     <welcome-file>upload.html</welcome-file>
   </welcome-file-list>
   <session-config>

@@ -220,10 +220,10 @@ public class TaskWebservice {
 	@Path("/user/authenticate")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public User authenticate(@QueryParam("username") String username, @QueryParam("password") String password)
+	public User authenticate(@Context User u)
 	{
 
-		return new User();
+		return u;
 	}
 
 	@Path("/task/detail/{id}")

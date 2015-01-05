@@ -25,6 +25,21 @@
 			<id>redhat-techpreview-all-repository</id>
 			<url>http://maven.repository.redhat.com/techpreview/all/</url>
 		</repository>
+		<repository>
+			<id>exo-repository</id>
+			<url>http://repository.exoplatform.org/public/</url>
+		</repository>
+		<repository>
+		    <id>org.springframework.maven.milestone</id>
+		    <name>Spring Maven Milestone Repository</name>
+		    <url>http://maven.springframework.org/milestone</url>
+		</repository>
+		<repository>
+		    <id>org.springframework.maven.snapshot</id>
+		    <name>Spring Maven Snapshot Repository</name>
+		    <url>http://maven.springframework.org/snapshot</url>
+		</repository>
+		
 	</repositories>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

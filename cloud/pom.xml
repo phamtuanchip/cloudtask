@@ -129,13 +129,33 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.14</version>
 		</dependency>
+		
+		<!-- mongodb java driver -->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		
+		<!-- Spring data mongodb -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.2.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 
 		<!-- Import the CDI API, we use provided scope as the API is included in 
 			JBoss EAP 6 -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
-<!-- 			<scope>provided</scope> -->
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
@@ -153,6 +173,51 @@
 			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- Spring social -->
+		 <dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-core</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework.social</groupId>
+		  <artifactId>spring-social-web</artifactId>
+		  <version>1.1.0.RELEASE</version>
+		</dependency>
+		<!-- Spring facebook -->
+		<dependency>
+		  <groupId>org.springframework.social</groupId>
+		  <artifactId>spring-social-facebook</artifactId>
+		  <version>1.1.0.RELEASE</version>
+		</dependency>	
+		<!-- Spring twitter -->
+		<dependency>
+		  <groupId>org.springframework.social</groupId>
+		  <artifactId>spring-social-twitter</artifactId>
+		  <version>1.1.0.RELEASE</version>
+		</dependency>	
+		
+		<!-- Spring linkedin -->
+		<dependency>
+		  <groupId>org.springframework.social</groupId>
+		  <artifactId>spring-social-linkedin</artifactId>
+		  <version>1.0.0.RELEASE</version>
+		</dependency>	
+		<!-- Spring tripit -->
+<!-- 		<dependency> -->
+<!-- 		  <groupId>org.springframework.social</groupId> -->
+<!-- 		  <artifactId>spring-social-tripit</artifactId> -->
+<!-- 		  <version>1.1.0.RELEASE</version> -->
+<!-- 		</dependency> -->
+		<!-- Spring github -->
+<!-- 		<dependency> -->
+<!-- 		  <groupId>org.springframework.social</groupId> -->
+<!-- 		  <artifactId>spring-social-github</artifactId> -->
+<!-- 		  <version>1.1.0.RELEASE</version> -->
+<!-- 		</dependency> -->
+		
+    
 	</dependencies>
 	<profiles>
 		<profile>
