@@ -36,25 +36,25 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public int save(User user) {
+	public User save(User user) {
 		String query = "insert into USERS (USERNAME, PASSWORD, ROLE) VALUE (?,?,?)";
 
 		Object[] args = new Object[]{user.getUsername(), user.getPassword(),user.getRoleString()};
 
 		int out = jdbcTemplate.update(query, args);
 
-		return out;
+		return user;
 
 	}
 
 	@Override
-	public int update(User user) {
+	public User update(User user) {
 		String query = "update USERS set (PASSWORD = ?, ROLE = ?) where USERNAME = ? ";
 		Object[] args = new Object[]{user.getPassword(), user.getRoleString(), user.getUsername()};
 
 		int out = jdbcTemplate.update(query, args);
 
-		return out;
+		return user;
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public List<User> listAll() {
+	public List<User> listUsers() {
 		// TODO Auto-generated method stub
 		return null;
 	}

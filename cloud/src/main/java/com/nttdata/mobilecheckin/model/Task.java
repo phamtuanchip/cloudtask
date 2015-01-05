@@ -3,12 +3,16 @@ package com.nttdata.mobilecheckin.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+@Document(collection = "tasks")
 public class Task implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2733976798890186613L;
+	@Id
 	private   long id;
 	private   String name;
 	private   int pri;

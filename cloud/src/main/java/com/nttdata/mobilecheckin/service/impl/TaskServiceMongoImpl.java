@@ -5,11 +5,23 @@ import java.util.Date;
 import java.util.List;
 
 import javax.naming.AuthenticationException;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
+import org.bson.BSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.json.JsonGeneratorImpl;
+import com.fasterxml.jackson.core.util.JsonGeneratorDelegate;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 import com.nttdata.mobilecheckin.log.LogShow;
 import com.nttdata.mobilecheckin.mappers.UserMapper;
 import com.nttdata.mobilecheckin.model.Notification;
@@ -31,33 +43,35 @@ public class TaskServiceMongoImpl implements TaskService{
 	@Override
 	public User findByUsername(String username) {
 
-		String query = "select USERNAME, PASSWORD, ROLE from USERS where USERNAME = ?";
-
-		User user = (User)jdbcTemplate.queryForObject(query, new Object[]{username}, new UserMapper());
-
+		User user = null;
+		if(mongoTemplate.collectionExists(User.class)){
+			Query searchUserQuery = new Query(Criteria.where("username").is(username));
+			user = mongoTemplate.findOne(searchUserQuery, User.class);
+		}  
 		return user;
 	}
 
 	@Override
-	public int save(User user) {
-		String query = "insert into USERS (USERNAME, PASSWORD, ROLE) VALUE (?,?,?)";
-
-		Object[] args = new Object[]{user.getUsername(), user.getPassword(),user.getRoleString()};
-
-		int out = jdbcTemplate.update(query, args);
-
-		return out;
+	public User save(User user) {
+		 
+		return register(user);
 
 	}
 
 	@Override
-	public int update(User user) {
-		String query = "update USERS set (PASSWORD = ?, ROLE = ?) where USERNAME = ? ";
-		Object[] args = new Object[]{user.getPassword(), user.getRoleString(), user.getUsername()};
-
-		int out = jdbcTemplate.update(query, args);
-
-		return out;
+	public User update(User user) {
+		// query to search user
+				Query searchUserQuery = new Query(Criteria.where("username").is(user.getUsername()));
+		// find the saved user again.
+				User savedUser = mongoTemplate.findOne(searchUserQuery, User.class);
+				System.out.println("2. find - savedUser : " + savedUser);
+				
+				// update password
+				DBObject dbObject = (DBObject) JSON.parse(JSON.serialize(user));
+			 
+				mongoTemplate.updateFirst(searchUserQuery, Update.fromDBObject(dbObject, "id"),
+						User.class);
+		return user;
 	}
 
 	@Override
@@ -75,9 +89,9 @@ public class TaskServiceMongoImpl implements TaskService{
 	}
 
 	@Override
-	public List<User> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> listUsers() {
+		List<User> listUser = mongoTemplate.findAll(User.class);
+		return listUser;
 	}
 
 	@Override

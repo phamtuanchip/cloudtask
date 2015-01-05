@@ -13,10 +13,10 @@ public interface TaskService {
 	//User API
 
 	public User findByUsername(String username);
-	public int save(User user);
-	public int update(User user);
+	public User save(User user);
+	public User update(User user);
 	public int delete(String username);
-	public List<User> listAll();	
+	public List<User> listUsers();	
 
 	public User login(User u) throws AuthenticationException;
 	
@@ -29,6 +29,9 @@ public interface TaskService {
 	
 	public Task update(Task t);
 	public List<Task> listTaskBy(Task t);
-	
+	// Notification API
 	public Notification getNotification() ;
+	// Subject API
+	
+	// Blog API
 }

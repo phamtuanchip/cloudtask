@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -26,6 +28,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.Response.Status;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -33,7 +36,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.nttdata.mobilecheckin.log.LogShow;
+import com.nttdata.mobilecheckin.model.Blog;
 import com.nttdata.mobilecheckin.model.Notification;
+import com.nttdata.mobilecheckin.model.Subject;
 import com.nttdata.mobilecheckin.model.Task;
 import com.nttdata.mobilecheckin.model.UploadFile;
 import com.nttdata.mobilecheckin.model.User;
@@ -144,6 +149,14 @@ public class TaskWebservice {
 		} 
 		return user;
 	}
+	
+	// User Rest API
+		@Path("/user/list")
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<User> listUsers() {
+			return InstanceService().listUsers();
+		}
 
 	@Path("/user/login")
 	@POST
@@ -191,29 +204,33 @@ public class TaskWebservice {
 	}
 
 	@GET
-	@Path("/user/search")
+	@Path("/user/search/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public User getUserInJSON(@Context HttpServletRequest req, @QueryParam("uid") String username) throws AuthenticationException {
-
+	public User getUserInJSON(@Context HttpServletRequest req, @Context Response r, @PathParam("username") String username) throws AuthenticationException {
+		User user = null;
 		if(getTaskServiceF() != null && username != null && !username.isEmpty()) {
-			User user = InstanceService().findByUsername(username);
+			user = InstanceService().findByUsername(username);
 			LogShow.getLogDebug("start search:"+user);
 			HttpSession session= req.getSession(true);
 			if(user != null){
 				session.setAttribute(username, username);
+				return	user;
+			} else {
+				r.status(Status.NOT_FOUND);
 			}
-			return	user;
+			
 		}
-		return new User();
+		 return user;
 
 	}
-	@POST
+	
 	@Path("/user/update")
+	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createUserInJSON(User u) {
-
+	@Produces(MediaType.APPLICATION_JSON)
+	public User updateUser(User u) {
 		String result = "User saved : " + u;
-		return Response.status(201).entity(result).build();
+		return InstanceService().update(u);
 
 	}
 
@@ -296,5 +313,169 @@ public class TaskWebservice {
 		this.taskServiceF = taskServiceF;
 	}
 	
+	//Subject API
 	
+	
+	@Path("/subject/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Subject getSubjectl(@PathParam("id") String id)
+	{
+		return  new Subject();
+	}
+	
+
+	@Path("/subject/list")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Subject> getListSubject()
+	{
+		ArrayList<Subject> list = new ArrayList<Subject>();
+		list.add(new Subject());
+		return  list;
+	}
+
+	@Path("/subject/delete/{id}")
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	public Subject deleteSubject(@PathParam("id") String id)
+	{
+		return  new Subject();
+	}
+	
+	@Path("/subject/update")
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Subject updateSubject(@Context Subject s)
+	{
+		return s;
+	}
+	
+	@Path("/subject/insert")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Subject insertSubject(@Context Subject s)
+	{
+		System.out.println("insert subject");
+		return s;
+	}
+	
+	//Notification API
+	
+	@Path("/notification/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Notification getNotification(@PathParam("id") String id)
+	{
+		return  new Notification();
+	}
+	
+
+	@Path("/notification/list")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Notification> getListNotification()
+	{
+		ArrayList<Notification> list = new ArrayList<Notification>();
+		list.add(new Notification());
+		return  list;
+	}
+
+	@Path("/notification/delete/{id}")
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	public Notification deleteNotification(@PathParam("id") String id)
+	{
+		return  new Notification();
+	}
+	
+	@Path("/notification/update")
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Notification updateNotification(@Context Notification n)
+	{
+		return n;
+	}
+	
+	@Path("/notification/insert")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Notification insertNotification(@Context Notification n)
+	{
+		return n;
+	}
+	
+	//Blog API
+	
+
+	@Path("/blog/{id}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Blog getBlog(@PathParam("id") String id)
+	{
+		return  new Blog();
+	}
+	
+
+	@Path("/blog/list")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Blog> getListBlog()
+	{
+		ArrayList<Blog> list = new ArrayList<Blog>();
+		list.add(new Blog());
+		return  list;
+	}
+	@Path("/blog/search")
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Blog> searchBlog(@Context Blog b)
+	{
+		ArrayList<Blog> list = new ArrayList<Blog>();
+		list.add(new Blog());
+		return  list;
+	}
+
+	@Path("/blog/delete/{id}")
+	@DELETE
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Blog deleteBlog(@PathParam("id") String id)
+	{
+		return  new Blog();
+	}
+	
+	@Path("/blog/update")
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Blog updateBlog(@Context Blog b)
+	{
+		return b;
+	}
+	
+	@Path("/blog/insert")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Blog insertBlog(@Context Blog b)
+	{
+		return b;
+	}
+	
+	@Path("/blog/public/{id}")
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	public Blog publicBlog(@PathParam("id") long id)
+	{
+		Blog b = new Blog();
+		b.setId(id);
+		b.setPublished(true);
+		return b;
+	}
 }
