@@ -25,12 +25,12 @@
 	
 
 	<bean id="taskServiceF"
-		class="com.nttdata.mobilecheckin.service.impl.TaskServiceFactoryLoader">
+		class="com.cloud.service.impl.TaskServiceFactoryLoader">
 		<property name="taskService" ref="taskService"></property>
 	</bean>
 
 
-	<bean class="com.nttdata.mobilecheckin.ws.rest.TaskWebservice">
+	<bean class="com.cloud.ws.rest.TaskWebservice">
 		<property name="taskServiceF" ref="taskServiceF"></property>
 	</bean>
 
@@ -56,17 +56,17 @@
 <!-- 		<property name="jdbcTemplate" ref="jdbcTemplate"></property> -->
 <!-- 	</bean> -->
 
-	<bean id="taskService" class="com.nttdata.mobilecheckin.service.impl.TaskServiceMongoImpl">
+	<bean id="taskService" class="com.cloud.service.impl.TaskServiceMongoImpl">
 		<property name="mongoTemplate" ref="mongoTemplate"></property>
 	</bean>
 
-	<bean id="runMeTask" class="com.nttdata.mobilecheckin.schedule.RunMeTask">
+	<bean id="runMeTask" class="com.cloud.schedule.RunMeTask">
 		<property name="taskServiceF" ref="taskServiceF"></property>
 	</bean>
 	<!-- Spring Quartz -->
 	<bean name="runMeJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 
-		<property name="jobClass" value="com.nttdata.mobilecheckin.schedule.RunMeJob" />
+		<property name="jobClass" value="com.cloud.schedule.RunMeJob" />
 
 		<property name="jobDataAsMap">
 			<map>

@@ -48,7 +48,7 @@
 		<spring.version>3.2.3.RELEASE</spring.version>
 		<jersey.version>2.13</jersey.version>
 		<mysql-jdbc.version>5.1.9</mysql-jdbc.version>
-
+		<spring.security.version>3.2.5.RELEASE</spring.security.version>
 		<!-- Explicitly declaring the source encoding eliminates the following 
 			message: -->
 		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
@@ -138,11 +138,13 @@
 		</dependencies>
 	</dependencyManagement>
 	<modules>
+		<module>core</module>	
 		<module>cloud</module>
 		<module>countdown</module>
 		<module>profile</module>
 		<module>blog</module>
 		<module>gallery</module>
+		<module>chat</module>
 	</modules>
 
 	<build>
