@@ -10,12 +10,12 @@
 	<groupId>org.cloud.smart</groupId>
 	<artifactId>cloudsmart-bl</artifactId>
 	<packaging>war</packaging>
-	 
-	 
- 
 
 
- 
+
+
+
+
 	<profiles>
 		<profile>
 			<!-- When built in OpenShift the 'openshift' profile will be used when 
