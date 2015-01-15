@@ -3,6 +3,7 @@ package com.cloud.admin.model;
 import java.util.Date;
 
 public class Notification {
+
 	Date lastUpdated;
 	String title;
 	String content;

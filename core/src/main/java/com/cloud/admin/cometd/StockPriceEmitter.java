@@ -14,14 +14,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.cloud.admin.model.Notification;
+import com.cloud.admin.model.Type;
 
 public class StockPriceEmitter implements Runnable
 {
-	public final static String NOTIFICATION_TASK = "NOTIFICATION_TASK"; 
-	public final static String NOTIFICATION_EMAIL = "NOTIFICATION_EMAIL";
-	public final static String NOTIFICATION_MESSAGE = "NOTIFICATION_MESSAGE";
-	public final static String NOTIFICATION_COMMENT = "NOTIFICATION_COMMENT";
-	public final static String NOTIFICATION_INFO = "NOTIFICATION_INFO";
+
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private final List<String> symbols = new ArrayList<String>();
     private final Map<String, Notification> values = new HashMap<String, Notification>();
@@ -29,12 +26,12 @@ public class StockPriceEmitter implements Runnable
 
     public StockPriceEmitter()
     {
-        symbols.addAll(Arrays.asList(NOTIFICATION_TASK, NOTIFICATION_EMAIL, NOTIFICATION_MESSAGE, NOTIFICATION_INFO, NOTIFICATION_COMMENT));
-        values.put(NOTIFICATION_TASK, new Notification(NOTIFICATION_TASK));
-        values.put(NOTIFICATION_EMAIL, new Notification(NOTIFICATION_EMAIL));
-        values.put(NOTIFICATION_MESSAGE, new Notification(NOTIFICATION_MESSAGE));
-        values.put(NOTIFICATION_INFO, new Notification(NOTIFICATION_INFO));
-        values.put(NOTIFICATION_COMMENT, new Notification(NOTIFICATION_COMMENT));
+        symbols.addAll(Arrays.asList(Type.NOTIFICATION_TASK, Type.NOTIFICATION_EMAIL, Type.NOTIFICATION_MESSAGE, Type.NOTIFICATION_INFO, Type.NOTIFICATION_COMMENT));
+        values.put(Type.NOTIFICATION_TASK, new Notification(Type.NOTIFICATION_TASK));
+        values.put(Type.NOTIFICATION_EMAIL, new Notification(Type.NOTIFICATION_EMAIL));
+        values.put(Type.NOTIFICATION_MESSAGE, new Notification(Type.NOTIFICATION_MESSAGE));
+        values.put(Type.NOTIFICATION_INFO, new Notification(Type.NOTIFICATION_INFO));
+        values.put(Type.NOTIFICATION_COMMENT, new Notification(Type.NOTIFICATION_COMMENT));
     }
 
     public List<Listener> getListeners()
@@ -44,7 +41,7 @@ public class StockPriceEmitter implements Runnable
 
     public void start()
     {
-        run();
+        //run();
     }
 
     public void stop()

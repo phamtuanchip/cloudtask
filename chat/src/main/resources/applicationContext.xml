@@ -95,5 +95,57 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	<bean id="runMeTask" class="com.cloud.schedule.RunMeTask">
+		<property name="taskServiceF" ref="taskServiceF"></property>
+	</bean>
+	<!-- Spring Quartz -->
+	<bean name="runMeJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		
+		<property name="jobClass" value="com.cloud.schedule.RunMeJob" />
+		<property name="durability" value="true"/>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="runMeTask" value-ref="runMeTask" />
+			</map>
+		</property>
+
+	</bean>
+
+	<!-- <bean id="runMeJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+		<property name="targetObject" ref="runMeTask" /> <property name="targetMethod" 
+		value="printMe" /> </bean> -->
+
+	<!-- Simple Trigger, run every 5 seconds -->
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+
+		<property name="jobDetail" ref="runMeJob" />
+		<property name="repeatInterval" value="5000" />
+		<property name="startDelay" value="1000" />
+
+	</bean>
+
+	<!-- Cron Trigger, run every 5 seconds -->
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+
+		<property name="jobDetail" ref="runMeJob" />
+		<property name="cronExpression" value="0/5 * * * * ?" />
+
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="runMeJob" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="simpleTrigger" />
+			</list>
+		</property>
+	</bean>
+	
 
 </beans>
