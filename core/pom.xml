@@ -7,23 +7,16 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.cloud.smart</groupId>
+	 <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
 	<artifactId>cloudsmart-co</artifactId>
 	<packaging>jar</packaging>
  
-	 
-
-
-
 
 	<dependencies>
-		<dependency>
-			<groupId>org.jboss.spec</groupId>
-			<artifactId>jboss-javaee-6.0</artifactId>
-			<version>1.0.0.Final</version>
-			<type>pom</type>
-			<scope>provided</scope>
-		</dependency>
+		 
 
 
 		<dependency>
@@ -214,29 +207,7 @@
 			<version>${spring.security.version}</version>
 		</dependency>
 
-		<!-- Import the CDI API, we use provided scope as the API is included in 
-			JBoss EAP 6 -->
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
-			as the API is included in JBoss EAP 6 -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.annotation</groupId>
-			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Import the JAX-RS API, we use provided scope as the API is included 
-			in JBoss EAP 6. -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.ws.rs</groupId>
-			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		  
 		
 		<!-- Spring social -->
 		 <dependency>

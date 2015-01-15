@@ -45,7 +45,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
-		<spring.version>3.2.3.RELEASE</spring.version>
+<!-- 		<spring.version>3.2.3.RELEASE</spring.version> -->
 		<jersey.version>2.13</jersey.version>
 		<mysql-jdbc.version>5.1.9</mysql-jdbc.version>
 		<spring.security.version>3.2.5.RELEASE</spring.security.version>
@@ -92,7 +92,15 @@
 		<version.org.apache.maven.surefire.plugin>2.10</version.org.apache.maven.surefire.plugin>
 		<version.org.jboss.as.plugins.jboss.as.maven.plugin>7.1.0.Final</version.org.jboss.as.plugins.jboss.as.maven.plugin>
 		<version.org.codehaus.mojo.gwt.maven.plugin>${version.com.google.gwt}</version.org.codehaus.mojo.gwt.maven.plugin>
-
+		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <maven.compiler.source>1.6</maven.compiler.source>
+	    <maven.compiler.target>1.6</maven.compiler.target>
+		<spring.version>4.1.1.RELEASE</spring.version>
+		<jstl.version>1.2</jstl.version>
+		<junit.version>4.11</junit.version>
+		<logback.version>1.0.13</logback.version>
+		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
+		<spring.security.version>3.2.5.RELEASE</spring.security.version>
 
 	</properties>
 
