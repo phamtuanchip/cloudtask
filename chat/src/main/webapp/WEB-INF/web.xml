@@ -168,7 +168,8 @@
         </init-param>
         <init-param>
             <param-name>services</param-name>
-            <param-value>com.cloud.admin.cometd.ChatService, com.cloud.admin.cometd.StockPriceService</param-value>
+             <param-value>com.cloud.admin.cometd.ChatService</param-value>
+<!--             <param-value>com.cloud.admin.cometd.ChatService, com.cloud.admin.cometd.StockPriceService</param-value> -->
         </init-param>
 <!--          <init-param> -->
 <!--             <param-name>services</param-name> -->

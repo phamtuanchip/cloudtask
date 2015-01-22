@@ -1,21 +1,11 @@
 package com.cloud.schedule;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.inject.Inject;
-
-import org.cometd.annotation.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.cloud.admin.cometd.StockPriceEmitter;
-import com.cloud.admin.model.Notification;
-import com.cloud.admin.model.Type;
-import com.cloud.service.TaskService;
-import com.cloud.service.TaskServiceFactory;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
 import org.cometd.annotation.Service;
 import org.cometd.annotation.Session;
@@ -23,18 +13,25 @@ import org.cometd.bayeux.server.BayeuxServer;
 import org.cometd.bayeux.server.ConfigurableServerChannel;
 import org.cometd.bayeux.server.LocalSession;
 import org.cometd.bayeux.server.ServerChannel;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.cloud.admin.model.Notification;
+import com.cloud.admin.model.Type;
+import com.cloud.service.TaskService;
+import com.cloud.service.TaskServiceFactory;
 
-
+@Singleton // Specifies to Spring that this is a singleton
+@Named // Spring looks for this annotation when scanning the classes to determine if it's a spring bean
+@Service // 
 public class RunMeTask {
 	
 	@Autowired
-	private TaskServiceFactory taskServiceF;
+	public TaskServiceFactory taskServiceF;
 	 
 	@Inject
-	private BayeuxServer bayeuxServer;
+	public BayeuxServer bayeuxServer;
 	@Session
-	private LocalSession sender;
+	public LocalSession sender;
 
 
 	public  TaskService InstanceService(){
