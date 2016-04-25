@@ -3,7 +3,7 @@ package com.cloud.admin.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-public abstract class DAOAbstract<T> implements DAOInterface<T> {
+public abstract class DAOAbstract<T>  {
 
 	public String dbType;	
 	public String drive;

@@ -2,6 +2,7 @@ package com.cloud.admin.dao;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.ResultSet;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -9,7 +10,7 @@ import javax.sql.DataSource;
 import com.cloud.admin.model.Image;
 
 
-public class GalleryDAOImpl implements ImageDAO{
+public class GalleryDAOImpl extends SqliteDAO<Image> implements ImageDAO{
 
 	@Override
 	public Image find(String id) {
@@ -82,6 +83,30 @@ public class GalleryDAOImpl implements ImageDAO{
 			String category_Name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Image search(Image obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet select(String sql) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Image tableToObject(ResultSet rs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateToTable(List<Image> rows) {
+		// TODO Auto-generated method stub
+		
 	}
 
   

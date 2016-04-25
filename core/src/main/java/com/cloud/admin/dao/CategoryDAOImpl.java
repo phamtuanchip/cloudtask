@@ -11,11 +11,12 @@ import javax.sql.DataSource;
 import com.cloud.admin.model.Category;
 
 
-public class CategoryDAOImpl extends SqliteDAO<Category>{
+public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
 
 	public CategoryDAOImpl() {
 		table = "category";
-		structureCreate = "(id integer primary key autoincrement, name varchar(225), note varchar(500), nwhere varchar(125), cdate varchar(25), update varchar(25))";
+		structureCreate = "(id integer primary key autoincrement, name varchar(225),"
+				+ " note varchar(500), nwhere varchar(125), cdate varchar(25), update varchar(25))";
 		structureUpdate = "(id, name, note, cdate, update)";
 	}
 	
@@ -54,24 +55,7 @@ public class CategoryDAOImpl extends SqliteDAO<Category>{
 		return status;
 	}
 
-	@Override
-	public int update(Category obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void delete(String id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteAll(List<String> selected) {
-		// TODO Auto-generated method stub
-
-	}
-
+	 
 	@Override
 	public List<Category> listAll() {
 		ArrayList<Category> list = new ArrayList<Category>();
@@ -86,17 +70,9 @@ public class CategoryDAOImpl extends SqliteDAO<Category>{
 		return list;
 	}
 
-	@Override
-	public int getSequence() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	 
 
-	@Override
-	public void setDataSource(DataSource dataSource) {
-		// TODO Auto-generated method stub
-
-	}
+	 
 
 	@Override
 	public Category tableToObject(ResultSet rs) {
@@ -110,15 +86,45 @@ public class CategoryDAOImpl extends SqliteDAO<Category>{
 		// TODO Auto-generated method stub
 		return c;
 	}
-	 
+
 	@Override
-	public ResultSet select(String sql) {
+	public Category search(Category obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Category search(Category obj) {
+	public int update(Category obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void delete(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAll(List<String> selected) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getSequence() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setDataSource(DataSource dataSource) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ResultSet select(String sql) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -129,5 +135,20 @@ public class CategoryDAOImpl extends SqliteDAO<Category>{
 		
 	}
 
+	@Override
+	public void insertCategory(String name, String description) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateCategory(int id, String name, String description) {
+		// TODO Auto-generated method stub
+		
+	}
+
+ 
+
+	 
 
 }

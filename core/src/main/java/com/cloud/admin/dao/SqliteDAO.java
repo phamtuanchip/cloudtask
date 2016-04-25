@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public abstract class SqliteDAO<T> extends DAOAbstract<T> {
+public abstract class SqliteDAO<T> extends DAOAbstract {
 	public static Connection c ;
 	
 	public Connection connect() {

@@ -1,5 +1,6 @@
 package com.cloud.admin.dao;
 
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import javax.sql.DataSource;
 
 import com.cloud.admin.model.Passenger;
 
-public class PassengerDAOImpl implements PassengerDAO {
+public class PassengerDAOImpl extends SqliteDAO<Passenger> implements PassengerDAO {
 
 	@Override
 	public int save(Passenger psg) {
@@ -71,6 +72,30 @@ public class PassengerDAOImpl implements PassengerDAO {
 
 	@Override
 	public void setDataSource(DataSource dataSource) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Passenger search(Passenger obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet select(String sql) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Passenger tableToObject(ResultSet rs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateToTable(List<Passenger> rows) {
 		// TODO Auto-generated method stub
 		
 	}

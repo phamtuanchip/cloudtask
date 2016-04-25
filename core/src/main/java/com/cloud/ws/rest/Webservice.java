@@ -501,7 +501,7 @@ public class Webservice {
 		@Produces(MediaType.APPLICATION_JSON)
 		public Image getImage(@PathParam("id") String id)
 		{
-			return  galleryService.getImage(Integer.parseInt(id));
+			return  galleryService.find(id);
 		}
 		
 

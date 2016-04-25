@@ -1,12 +1,13 @@
 package com.cloud.admin.dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import com.cloud.admin.model.User;
 
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl extends SqliteDAO<User> implements UserDAO {
 
 	@Override
 	public User find(String id) {
@@ -60,6 +61,30 @@ public class UserDAOImpl implements UserDAO {
 	public User findByUsername(String username) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public User search(User obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet select(String sql) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User tableToObject(ResultSet rs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateToTable(List<User> rows) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	 

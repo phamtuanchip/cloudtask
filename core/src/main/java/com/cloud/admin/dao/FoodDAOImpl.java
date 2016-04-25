@@ -1,31 +1,21 @@
 package com.cloud.admin.dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.cloud.admin.model.Bill;
+import com.cloud.admin.model.Customer;
+import com.cloud.admin.model.Drink;
 import com.cloud.admin.model.Food;
+import com.cloud.admin.model.Item;
+import com.cloud.admin.model.SetTable;
 
 
-public class FoodDAOImpl implements FoodDAO{
+public class FoodDAOImpl extends SqliteDAO<Food> implements FoodDAO{
 
-	@Override
-	public void orderIn(Food i) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void orederOut(Food i) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<Food> order() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	 
 
 	@Override
 	public Food find(String id) {
@@ -73,6 +63,54 @@ public class FoodDAOImpl implements FoodDAO{
 	public void setDataSource(DataSource dataSource) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Food search(Food obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet select(String sql) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Food tableToObject(ResultSet rs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateToTable(List<Food> rows) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void orderIn(Food i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void orederOut(Food i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Food> order() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Bill createOder(Customer c, List<Item> order, SetTable t) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
