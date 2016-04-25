@@ -15,15 +15,15 @@ public class CategoryDAOImpl extends SqliteDAO<Category>{
 
 	public CategoryDAOImpl() {
 		table = "category";
-		structure = "(id integer primary key autoincrement, nwhat varchar(125), nwhen varchar(30), nwhere varchar(125), nremind varchar(10), nimage varchar (125), nbinary BLOB, ntime varchar(5) )";
+		structureCreate = "(id integer primary key autoincrement, name varchar(225), note varchar(500), nwhere varchar(125), cdate varchar(25), update varchar(25))";
+		structureUpdate = "(id, name, note, cdate, update)";
 	}
 	
 	@Override
 	public Category find(String id) {
-		sql = 
-		ResultSet rs = selectFromTable(sql + id) 
-		
-		return null;
+		sqlWhere = sqlSelect + "where id =" + id;
+		ResultSet rs = select(sqlWhere);
+		return tableToObject(rs);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class CategoryDAOImpl extends SqliteDAO<Category>{
 		try {
 			st = connect().createStatement();
 
-			int rc = st.executeUpdate( "INSERT INTO "+table+" "+structure+" VALUES('qwer')" );
+			int rc = st.executeUpdate( "INSERT INTO "+table+" VALUES("+")" );
 			System.out.println( "insert returns " + rc );
 
 			ResultSet rs = st.executeQuery( "SELECT * FROM " + table );
@@ -76,7 +76,7 @@ public class CategoryDAOImpl extends SqliteDAO<Category>{
 	public List<Category> listAll() {
 		ArrayList<Category> list = new ArrayList<Category>();
 		try {
-			ResultSet rs = select(sql);
+			ResultSet rs = selectFromTable();
 			while (rs.next()) {
 				list.add(tableToObject(rs));
 			}
@@ -115,6 +115,18 @@ public class CategoryDAOImpl extends SqliteDAO<Category>{
 	public ResultSet select(String sql) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Category search(Category obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateToTable(List<Category> rows) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

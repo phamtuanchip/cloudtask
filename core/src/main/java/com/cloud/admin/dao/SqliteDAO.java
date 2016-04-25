@@ -48,9 +48,16 @@ public abstract class SqliteDAO<T> extends DAOAbstract<T> {
 	
 	
 	public ResultSet selectFromTable(){
-		Statement st = connect().createStatement();
-		ResultSet rs = st.executeQuery(sqlSelect);
-		return rs;
+		Statement st;
+		try {
+			st = connect().createStatement();
+			ResultSet rs = st.executeQuery(sqlSelect);
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	

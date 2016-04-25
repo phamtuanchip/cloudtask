@@ -8,7 +8,8 @@ public abstract class DAOAbstract<T> implements DAOInterface<T> {
 	public String dbType;	
 	public String drive;
 	public String table;
-	public String structure;
+	public String structureCreate;
+	public String structureUpdate;
 	public String sqlCreate;
 	public String sqlSelect;
 	public String sqlWhere; 

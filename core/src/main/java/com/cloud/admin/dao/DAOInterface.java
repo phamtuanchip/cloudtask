@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 
 public interface DAOInterface <T> {
 	
+	public T search(T obj);
 	public T find(String id);
 	public int save(T obj);
 	public int update(T obj);
@@ -25,5 +26,6 @@ public interface DAOInterface <T> {
 	public ResultSet select(String sql) ;
 	public ResultSet selectFromTable() ;
 	public T tableToObject(ResultSet rs); 
+	public void updateToTable(List<T> rows);
 
 }
