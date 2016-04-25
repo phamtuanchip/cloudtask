@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.cloud.admin.model.Passenger;
 
-public interface PassengerDAO {
+public interface PassengerDAO extends DAOInterface<Passenger> {
 	
 	public int save(Passenger psg);
 	public Passenger get(String lastName, String resvNumber, String flightNumber);

@@ -1,6 +1,5 @@
 package com.cloud.admin.model;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,7 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
-public class User implements Serializable, UserDetails {
+public class User extends Customer implements UserDetails {
 	/**
 	 * 
 	 */

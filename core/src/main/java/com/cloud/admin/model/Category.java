@@ -1,38 +1,35 @@
 package com.cloud.admin.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
 
-public class Category implements Serializable {
+public class Category extends ModelAbstact {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private int id ;
-	private String name;
-	private String description;
-	private Date dateCreate;
-	
+
 	//constructor
 	public Category() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	public Category(int id, String name, String description, Date dateCreate) {
+	public Category(long id, String name) {
+		super(id, name);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Category(long id, String name, String description, Date dateCreate) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.description = description;
-		this.dateCreate = dateCreate;
+		this.note = description;
+		this.createdDate = dateCreate;
 	}
 
 
 	//getter and setter
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -45,24 +42,24 @@ public class Category implements Serializable {
 		this.name = name;
 	}
 	public String getDescription() {
-		return description;
+		return note;
 	}
 	public void setDescription(String description) {
-		this.description = description;
+		this.note = description;
 	}
 	public Date getDateCreate() {
-		return dateCreate;
+		return createdDate;
 	}
 	public void setDateCreate(Date dateCreate) {
-		this.dateCreate = dateCreate;
+		this.createdDate = dateCreate;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", description="
-				+ description + ", dateCreate=" + dateCreate + "]";
+				+ note + ", dateCreate=" + createdDate + "]";
 	}
-	
-	
+
+
 }

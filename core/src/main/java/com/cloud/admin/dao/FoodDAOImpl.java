@@ -1,64 +1,64 @@
 package com.cloud.admin.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.cloud.admin.model.Passenger;
+import com.cloud.admin.model.Food;
 
-public class PassengerDAOImpl implements PassengerDAO {
+
+public class FoodDAOImpl implements FoodDAO{
 
 	@Override
-	public int save(Passenger psg) {
+	public void orderIn(Food i) {
 		// TODO Auto-generated method stub
-		return 0;
+
 	}
 
 	@Override
-	public Passenger get(String lastName, String resvNumber, String flightNumber) {
+	public void orederOut(Food i) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Food> order() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Passenger> getList(String flightNumber, Date flightDate) {
+	public Food find(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int update(Passenger psg) {
+	public int save(Food obj) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete(Passenger psg) {
+	public int update(Food obj) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public Passenger find(String id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAll(List<String> selected) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public List<Passenger> listAll() {
+	public List<Food> listAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -72,8 +72,10 @@ public class PassengerDAOImpl implements PassengerDAO {
 	@Override
 	public void setDataSource(DataSource dataSource) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	 
+
+
+
 
 }
