@@ -35,6 +35,8 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cloud.admin.dao.GalleryDAOImpl;
+import com.cloud.admin.model.Image;
 import com.cloud.log.LogShow;
 import com.cloud.model.Blog;
 import com.cloud.model.Notification;
@@ -47,12 +49,23 @@ import com.cloud.service.TaskServiceFactory;
 
 @Path("/rest")
 @Component
-public class TaskWebservice {
+public class Webservice {
 	private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/uploads";
 	@Autowired
 	private TaskServiceFactory taskServiceF;
 
+	@Autowired
+	private GalleryDAOImpl galleryService;
 
+	//File Rest API
+
+	public GalleryDAOImpl getGalleryService() {
+		return galleryService;
+	}
+
+	public void setGalleryService(GalleryDAOImpl galleryService) {
+		this.galleryService = galleryService;
+	}
 
 	private  TaskService InstanceService(){
 		return taskServiceF.getTaskService();
@@ -478,4 +491,74 @@ public class TaskWebservice {
 		b.setPublished(true);
 		return b;
 	}
+	
+	
+	//Gallery API
+	
+
+		@Path("/image/{id}")
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public Image getImage(@PathParam("id") String id)
+		{
+			return  galleryService.getImage(Integer.parseInt(id));
+		}
+		
+
+		@Path("/image/list")
+		@GET
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Image> getListImage()
+		{
+			ArrayList<Image> list = new ArrayList<Image>();
+			list.add(new Image());
+			return  list;
+		}
+		@Path("/image/search")
+		@GET
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<Image> searchImage(@Context Image b)
+		{
+			ArrayList<Image> list = new ArrayList<Image>();
+			list.add(new Image());
+			return  list;
+		}
+
+		@Path("/image/delete/{id}")
+		@DELETE
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public Image deleteImage(@PathParam("id") String id)
+		{
+			return  new Image();
+		}
+		
+		@Path("/image/update")
+		@PUT
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public Image updateImage(@Context Image b)
+		{
+			return b;
+		}
+		
+		@Path("/image/insert")
+		@POST
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public Image insertImage(@Context Image b)
+		{
+			return b;
+		}
+		
+		@Path("/image/public/{id}")
+		@PUT
+		@Produces(MediaType.APPLICATION_JSON)
+		public Image publicImage(@PathParam("id") long id)
+		{
+			Image b = new Image();
+			 
+			return b;
+		}
 }

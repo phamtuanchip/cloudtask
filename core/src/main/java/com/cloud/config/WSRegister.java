@@ -7,7 +7,8 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
-import com.cloud.ws.rest.TaskWebservice;
+import com.cloud.ws.rest.GalleryWebservice;
+import com.cloud.ws.rest.Webservice;
 
  
 public class WSRegister extends ResourceConfig {
@@ -17,7 +18,8 @@ public class WSRegister extends ResourceConfig {
        
     	register(RequestContextFilter.class);
     	//for Rest Service
-        register(TaskWebservice.class);
+        register(Webservice.class);
+        //register(GalleryWebservice.class);
         register(ContainerResponseFilter.class);
         //for CORS request
         register(CorsResponseFilter.class);
