@@ -9,6 +9,8 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.cloud.admin.model.Category;
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
 
 public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
@@ -16,8 +18,10 @@ public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
 	public CategoryDAOImpl() {
 		table = "category";
 		structureCreate = "(id integer primary key autoincrement, name varchar(225),"
-				+ " note varchar(500), nwhere varchar(125), cdate varchar(25), update varchar(25))";
-		structureUpdate = "(id, name, note, cdate, update)";
+				+ " note varchar(500), cdate varchar(25), udate varchar(25));";
+		structureUpdate = "(id, name, note, cdate, udate)";
+		structureInsert = "(name, note, cdate, udate)";
+		//createTable();
 	}
 	
 	@Override
@@ -30,27 +34,21 @@ public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
 	@Override
 	public int save(Category obj) {
 		Statement st;
-		int status =0;
+		int status =-1;
 		try {
 			st = connect().createStatement();
-
-			int rc = st.executeUpdate( "INSERT INTO "+table+" VALUES("+")" );
-			System.out.println( "insert returns " + rc );
-
-			ResultSet rs = st.executeQuery( "SELECT * FROM " + table );
-			while ( rs.next() ) {
-				int i = rs.getInt(1);
-				String  s = rs.getString(2);
-				System.out.println( "i=" + i + ", s=" + s );
-			}
-			rs.close();
+			String isql = "INSERT INTO "+table+" "+structureInsert+" VALUES('"+obj.getName()+"', '"+obj.getNote()+"', '"+ISO8601Utils.format(obj.getDateCreate())+"', '"+ISO8601Utils.format(obj.getLastUpdated())+"');";
+			System.out.println(isql);
+			st.executeUpdate(isql);
 			st.close();
-
-			connect().commit();
+			//connect().commit();
 			connect().close();
+			status =0 ;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		return status;
 	}
@@ -66,6 +64,8 @@ public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -78,9 +78,11 @@ public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
 	public Category tableToObject(ResultSet rs) {
 		Category c = null;
 		try {
-			c = new Category(rs.getLong(0), rs.getString(1));
-			c.setNote(rs.getString(2));
+			c = new Category(rs.getLong(1), rs.getString(2));
+			c.setNote(rs.getString(3));
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		// TODO Auto-generated method stub
@@ -129,11 +131,7 @@ public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
 		return null;
 	}
 
-	@Override
-	public void updateToTable(List<Category> rows) {
-		// TODO Auto-generated method stub
-		
-	}
+	 
 
 	@Override
 	public void insertCategory(String name, String description) {
@@ -143,6 +141,12 @@ public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
 
 	@Override
 	public void updateCategory(int id, String name, String description) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateToTable(List<Category> rows) {
 		// TODO Auto-generated method stub
 		
 	}

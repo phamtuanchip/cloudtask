@@ -16,16 +16,5 @@ public interface DAOInterface <T> {
 	public void deleteAll(List<String> selected);
 	public List<T> listAll();	
 	
-	public int getSequence();
-	public void setDataSource(DataSource dataSource);
-	
-	public Connection connect();
-
-	public void createTable() ; 
-	
-	public ResultSet select(String sql) ;
-	public ResultSet selectFromTable() ;
-	public T tableToObject(ResultSet rs); 
 	public void updateToTable(List<T> rows);
-
 }

@@ -24,6 +24,7 @@ public abstract class ModelAbstact implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.createdDate = new Date();
+		this.lastUpdated = new Date(); 
 	}
 	public long getId() {
 		return id;
