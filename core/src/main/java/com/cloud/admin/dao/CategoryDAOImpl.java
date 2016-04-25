@@ -91,6 +91,7 @@ public class CategoryDAOImpl extends SqliteDAO<Category> implements CategoryDAO{
 
 	@Override
 	public Category search(Category obj) {
+		sqlWhere = sqlSelect + "where id =" + obj.id + "or name like%(";
 		// TODO Auto-generated method stub
 		return null;
 	}

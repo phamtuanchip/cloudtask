@@ -11,7 +11,7 @@ public abstract class SqliteDAO<T> extends DAOAbstract {
 	
 	public Connection connect() {
 		dbType = "sqlite";
-		drive  = "D:/projects/cloudtask/db/coffe2.db";
+		drive  = "coffe2.db";
 		sqlCreate = "CREATE TABLE IF NOT EXISTS " + table +" "+ structureCreate;
 		sqlDrop = "DROP TABLE " + table + ";" ;
 		sqlSelect = "SELECT * FROM " + table + ";" ;
