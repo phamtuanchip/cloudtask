@@ -26,13 +26,6 @@ public class CategoryDAOImpl extends SqliteDAOImpl<Category> implements Category
 	}
 	
 	@Override
-	public Category find(String id) {
-		sqlWhere = sqlSelect + "where id =" + id;
-		ResultSet rs = select(sqlWhere);
-		return tableToObject(rs);
-	}
-
-	@Override
 	public int save(Category obj) {
 		Statement st;
 		int status =-1;

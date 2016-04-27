@@ -24,7 +24,7 @@ public class DaoTest extends TestCase {
 	}
 
 	@Test
-	public void testCategoryDAO() {
+	public void testUserDAO() {
 		
 		 assertNotNull(cdao.connect());
 		 //cdao.createTable();

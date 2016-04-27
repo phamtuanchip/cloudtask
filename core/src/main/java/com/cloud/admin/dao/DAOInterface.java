@@ -1,10 +1,6 @@
 package com.cloud.admin.dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.util.List;
-
-import javax.sql.DataSource;
 
 public interface DAOInterface <T> {
 	

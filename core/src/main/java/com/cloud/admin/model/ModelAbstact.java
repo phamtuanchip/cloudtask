@@ -30,6 +30,14 @@ public abstract class ModelAbstact implements Serializable {
 		return id;
 	}
 
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	public void setId(long id) {
 		this.id = id;
 	}

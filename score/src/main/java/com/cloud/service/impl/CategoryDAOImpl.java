@@ -17,20 +17,12 @@ import com.fasterxml.jackson.databind.util.ISO8601Utils;
 public class CategoryDAOImpl extends SqliteDAOImpl<Category> implements CategoryDAO{
 
 	public CategoryDAOImpl() {
-		table = "category";
-		structureCreate = "(id integer primary key autoincrement, name varchar(225),"
-				+ " note varchar(500), cdate varchar(25), udate varchar(25));";
-		structureUpdate = "(id, name, note, cdate, udate)";
-		structureInsert = "(name, note, cdate, udate)";
-		//createTable();
+		table = TABLE;
+		structureCreate = STRUCTURE ;
+		structureUpdate = UPDATE_S;
+		structureInsert = INSERT_S;
 	}
 	
-	@Override
-	public Category find(String id) {
-		sqlWhere = sqlSelect + "where id =" + id;
-		ResultSet rs = select(sqlWhere);
-		return tableToObject(rs);
-	}
 
 	@Override
 	public int save(Category obj) {
@@ -55,26 +47,6 @@ public class CategoryDAOImpl extends SqliteDAOImpl<Category> implements Category
 	}
 
 	 
-	@Override
-	public List<Category> listAll() {
-		ArrayList<Category> list = new ArrayList<Category>();
-		try {
-			ResultSet rs = selectFromTable();
-			while (rs.next()) {
-				list.add(tableToObject(rs));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-
-	 
-
-	 
-
 	@Override
 	public Category tableToObject(ResultSet rs) {
 		Category c = null;

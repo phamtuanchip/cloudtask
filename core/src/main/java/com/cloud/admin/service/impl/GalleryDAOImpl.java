@@ -67,11 +67,7 @@ public class GalleryDAOImpl extends SqliteDAOImpl<Image> implements ImageDAO{
 		
 	}
 
-	@Override
-	public Image getImageById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	 
 
 	@Override
 	public List<Image> SearchImageFullText(String key) {

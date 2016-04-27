@@ -5,10 +5,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cloud.admin.dao.DAOAbstract;
+import com.cloud.admin.dao.DAOInterface;
+import com.cloud.admin.model.User;
 
-public abstract class SqliteDAOImpl<T> extends DAOAbstract {
+public abstract class SqliteDAOImpl<T> extends DAOAbstract implements DAOInterface<T> {
 	public static Connection c ;
 	
 	public Connection connect() {
@@ -82,6 +86,28 @@ public abstract class SqliteDAOImpl<T> extends DAOAbstract {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public List<T> listAll() {
+		ArrayList<T> list = new ArrayList<T>();
+		try {
+			ResultSet rs = selectFromTable();
+			while (rs.next()) {
+				list.add((T)tableToObject(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	@Override
+	public T find(String id) {
+		sqlWhere = sqlSelect + "where id =" + id;
+		ResultSet rs = select(sqlWhere);
+		return (T) tableToObject(rs);
 	}
 
 	
