@@ -8,30 +8,30 @@ import javax.sql.DataSource;
 import com.cloud.admin.model.Customer;
 import com.cloud.admin.model.Item;
 import com.cloud.admin.service.impl.SqliteDAOImpl;
-import com.cloud.model.Bill;
-import com.cloud.model.Food;
-import com.cloud.model.SetTable;
-import com.cloud.service.FoodDAO;
+import com.cloud.model.Report;
+import com.cloud.model.Information;
+import com.cloud.model.Province;
+import com.cloud.service.InformationDAO;
 
 
-public class FoodDAOImpl extends SqliteDAOImpl<Food> implements FoodDAO{
+public class FoodDAOImpl extends SqliteDAOImpl<Information> implements InformationDAO{
 
 	 
 
 	@Override
-	public Food find(String id) {
+	public Information find(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int save(Food obj) {
+	public int save(Information obj) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(Food obj) {
+	public int update(Information obj) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -49,7 +49,7 @@ public class FoodDAOImpl extends SqliteDAOImpl<Food> implements FoodDAO{
 	}
 
 	@Override
-	public List<Food> listAll() {
+	public List<Information> listAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -67,7 +67,7 @@ public class FoodDAOImpl extends SqliteDAOImpl<Food> implements FoodDAO{
 	}
 
 	@Override
-	public Food search(Food obj) {
+	public Information search(Information obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -79,37 +79,37 @@ public class FoodDAOImpl extends SqliteDAOImpl<Food> implements FoodDAO{
 	}
 
 	@Override
-	public Food tableToObject(ResultSet rs) {
+	public Information tableToObject(ResultSet rs) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void updateToTable(List<Food> rows) {
+	public void updateToTable(List<Information> rows) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void orderIn(Food i) {
+	public void orderIn(Information i) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void orederOut(Food i) {
+	public void orederOut(Information i) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Food> order() {
+	public List<Information> order() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Bill createOder(Customer c, List<Item> order, SetTable t) {
+	public Report createOder(Customer c, List<Item> order, Province t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

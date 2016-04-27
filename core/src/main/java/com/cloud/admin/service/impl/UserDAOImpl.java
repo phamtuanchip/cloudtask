@@ -15,6 +15,7 @@ public class UserDAOImpl extends SqliteDAOImpl<User> implements UserDAO {
 
 	public UserDAOImpl() {
 		table = TABLE;
+		drive = DATA;
 		structureCreate = STRUCTURE ;
 		structureUpdate = UPDATE_S;
 		structureInsert = INSERT_S;

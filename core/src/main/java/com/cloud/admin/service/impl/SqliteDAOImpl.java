@@ -14,10 +14,9 @@ import com.cloud.admin.model.User;
 
 public abstract class SqliteDAOImpl<T> extends DAOAbstract implements DAOInterface<T> {
 	public static Connection c ;
-	
+		
 	public Connection connect() {
 		dbType = "sqlite";
-		drive  = "cloud.db";
 		sqlCreate = "CREATE TABLE IF NOT EXISTS " + table +" "+ structureCreate;
 		sqlDrop = "DROP TABLE " + table + ";" ;
 		sqlSelect = "SELECT * FROM " + table + ";" ;
@@ -37,7 +36,7 @@ public abstract class SqliteDAOImpl<T> extends DAOAbstract implements DAOInterfa
 		
 		return c;
 	}
-	
+	 
 	public void createTable()  {
 		Statement st;
 		

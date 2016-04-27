@@ -5,12 +5,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.cloud.admin.model.Category;
+import com.cloud.model.Human;
 import com.cloud.service.impl.CategoryDAOImpl;
+import com.cloud.service.impl.HumanDAOImpl;
 
 import junit.framework.TestCase;
 
 public class DaoTest extends TestCase {
-	CategoryDAOImpl cdao = new CategoryDAOImpl();
+	HumanDAOImpl cdao = new HumanDAOImpl();
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("===========Create table=============");
@@ -24,12 +26,12 @@ public class DaoTest extends TestCase {
 	}
 
 	@Test
-	public void testCategoryDAO() {
+	public void testHumanDAO() {
 		
 		 assertNotNull(cdao.connect());
 		 //cdao.createTable();
 		//fail("Not yet implemented");
-		 cdao.save(new Category(0, "test0"));
+		 cdao.save(new Human(0, "test0"));
 		 assertEquals(1, cdao.listAll().size());
 	}
 

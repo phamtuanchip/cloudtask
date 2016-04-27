@@ -3,6 +3,7 @@ package com.cloud.admin.service;
 import com.cloud.admin.model.User;
 
 public interface UserDAO {
+	public final String DATA = "cloud.db";
 	public final String TABLE = "users";
 	public final String STRUCTURE = "(id integer primary key autoincrement, name varchar(225),"
 			+ " note varchar(500), cdate varchar(25), udate varchar(25));";

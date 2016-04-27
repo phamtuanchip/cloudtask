@@ -8,30 +8,30 @@ import javax.sql.DataSource;
 import com.cloud.admin.model.Customer;
 import com.cloud.admin.model.Item;
 import com.cloud.admin.service.impl.SqliteDAOImpl;
-import com.cloud.model.Bill;
-import com.cloud.model.Drink;
-import com.cloud.model.SetTable;
-import com.cloud.service.DrinkDAO;
+import com.cloud.model.Report;
+import com.cloud.model.Technology;
+import com.cloud.model.Province;
+import com.cloud.service.TechnologyDAO;
 
 
-public class DrinkDAOImpl extends SqliteDAOImpl<Drink> implements DrinkDAO{
+public class DrinkDAOImpl extends SqliteDAOImpl<Technology> implements TechnologyDAO{
 
  
 
 	@Override
-	public Drink find(String id) {
+	public Technology find(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int save(Drink obj) {
+	public int save(Technology obj) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(Drink obj) {
+	public int update(Technology obj) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -49,7 +49,7 @@ public class DrinkDAOImpl extends SqliteDAOImpl<Drink> implements DrinkDAO{
 	}
 
 	@Override
-	public List<Drink> listAll() {
+	public List<Technology> listAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -67,7 +67,7 @@ public class DrinkDAOImpl extends SqliteDAOImpl<Drink> implements DrinkDAO{
 	}
 
 	@Override
-	public Drink search(Drink obj) {
+	public Technology search(Technology obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -79,37 +79,37 @@ public class DrinkDAOImpl extends SqliteDAOImpl<Drink> implements DrinkDAO{
 	}
 
 	@Override
-	public Drink tableToObject(ResultSet rs) {
+	public Technology tableToObject(ResultSet rs) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void updateToTable(List<Drink> rows) {
+	public void updateToTable(List<Technology> rows) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void orderIn(Drink i) {
+	public void orderIn(Technology i) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void orederOut(Drink i) {
+	public void orederOut(Technology i) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Drink> order() {
+	public List<Technology> order() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Bill createOder(Customer c, List<Item> order, SetTable t) {
+	public Report createOder(Customer c, List<Item> order, Province t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

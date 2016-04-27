@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.cloud.admin.model.ModelAbstact;
 
-public class Bill extends ModelAbstact{
+public class Report extends ModelAbstact{
 	public double totalAmoun;
 	public Date pritedDate;
 	public String paymentMethod;

@@ -6,22 +6,22 @@ import com.cloud.admin.model.ModelAbstact;
 
 
 
-public class Category extends ModelAbstact {
+public class Organization extends ModelAbstact {
 	/**
 	 * 
 	 */
 
 	//constructor
-	public Category() {
+	public Organization() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Category(long id, String name) {
+	public Organization(long id, String name) {
 		super(id, name);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Category(long id, String name, String description, Date dateCreate) {
+	public Organization(long id, String name, String description, Date dateCreate) {
 		super();
 		this.id = id;
 		this.name = name;

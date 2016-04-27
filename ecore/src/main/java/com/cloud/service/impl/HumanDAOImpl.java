@@ -3,35 +3,38 @@ package com.cloud.service.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.cloud.admin.model.User;
 import com.cloud.admin.service.impl.SqliteDAOImpl;
-import com.cloud.model.Category;
-import com.cloud.service.CategoryDAO;
+import com.cloud.model.Human;
+import com.cloud.service.HumanDAO;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
+public class HumanDAOImpl extends SqliteDAOImpl<Human> implements HumanDAO {
 
-public class CategoryDAOImpl extends SqliteDAOImpl<Category> implements CategoryDAO{
-
-	public CategoryDAOImpl() {
+	public HumanDAOImpl() {
 		table = TABLE;
 		drive = DATA;
 		structureCreate = STRUCTURE ;
 		structureUpdate = UPDATE_S;
 		structureInsert = INSERT_S;
 	}
-	
+	@Override
+	public Human search(Human obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
-	public int save(Category obj) {
+	public int save(Human obj) {
 		Statement st;
 		int status =-1;
 		try {
 			st = connect().createStatement();
-			String isql = "INSERT INTO "+table+" "+structureInsert+" VALUES('"+obj.getName()+"', '"+obj.getNote()+"', '"+ISO8601Utils.format(obj.getDateCreate())+"', '"+ISO8601Utils.format(obj.getLastUpdated())+"');";
+			String isql = "INSERT INTO "+table+" "+structureInsert+" VALUES('"+obj.getName()+"', '"+obj.getNote()+"', '"+ISO8601Utils.format(obj.getCreatedDate())+"', '"+ISO8601Utils.format(obj.getLastUpdated())+"');";
 			System.out.println(isql);
 			st.executeUpdate(isql);
 			st.close();
@@ -47,31 +50,8 @@ public class CategoryDAOImpl extends SqliteDAOImpl<Category> implements Category
 		return status;
 	}
 
-	 
 	@Override
-	public Category tableToObject(ResultSet rs) {
-		Category c = null;
-		try {
-			c = new Category(rs.getLong(1), rs.getString(2));
-			c.setNote(rs.getString(3));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		// TODO Auto-generated method stub
-		return c;
-	}
-
-	@Override
-	public Category search(Category obj) {
-		sqlWhere = sqlSelect + "where id =" + obj.id + "or name like%(";
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int update(Category obj) {
+	public int update(Human obj) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -84,6 +64,12 @@ public class CategoryDAOImpl extends SqliteDAOImpl<Category> implements Category
 
 	@Override
 	public void deleteAll(List<String> selected) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateToTable(List<Human> rows) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -106,28 +92,23 @@ public class CategoryDAOImpl extends SqliteDAOImpl<Category> implements Category
 		return null;
 	}
 
+	@Override
+	public Human tableToObject(ResultSet rs) {
+		Human c = null;
+		try {
+			c = new Human(rs.getLong(1), rs.getString(2));
+			c.setNote(rs.getString(3));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+		return c;
+	}
+
 	 
-
-	@Override
-	public void insertCategory(String name, String description) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateCategory(int id, String name, String description) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateToTable(List<Category> rows) {
-		// TODO Auto-generated method stub
-		
-	}
-
- 
-
+	 
 	 
 
 }

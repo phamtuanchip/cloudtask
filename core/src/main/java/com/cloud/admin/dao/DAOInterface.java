@@ -3,7 +3,6 @@ package com.cloud.admin.dao;
 import java.util.List;
 
 public interface DAOInterface <T> {
-	
 	public T search(T obj);
 	public T find(String id);
 	public int save(T obj);
