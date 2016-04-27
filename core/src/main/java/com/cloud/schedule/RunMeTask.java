@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cloud.admin.model.Notification;
 import com.cloud.admin.model.Type;
-import com.cloud.service.TaskService;
-import com.cloud.service.TaskServiceFactory;
+import com.cloud.admin.service.TaskService;
+import com.cloud.admin.service.TaskServiceFactory;
 
 @Singleton // Specifies to Spring that this is a singleton
 @Named // Spring looks for this annotation when scanning the classes to determine if it's a spring bean

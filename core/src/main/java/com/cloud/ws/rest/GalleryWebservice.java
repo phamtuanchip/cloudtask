@@ -29,8 +29,8 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cloud.admin.dao.GalleryDAOImpl;
 import com.cloud.admin.model.Image;
+import com.cloud.admin.service.impl.GalleryDAOImpl;
 import com.cloud.model.UploadFile;
 
 @Path("/gallery")

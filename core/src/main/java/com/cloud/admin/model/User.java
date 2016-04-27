@@ -11,6 +11,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 public class User extends Customer implements UserDetails {
+	public User(long id, String name) {
+		super(id, name);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	/**
 	 * 
 	 */

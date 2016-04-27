@@ -42,6 +42,7 @@
 		
 	</repositories>
 	<properties>
+		<cloud.smart.version>1.0-SNAPSHOT</cloud.smart.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
@@ -133,6 +134,9 @@
 	</dependencyManagement>
 	<modules>
 		<module>core</module>	
+		<module>ecore</module>	
+		<module>score</module>	
+		<module>resource</module>
 		<module>cloud</module>
 		<module>countdown</module>
 		<module>profile</module>

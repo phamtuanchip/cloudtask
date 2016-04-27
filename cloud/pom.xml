@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>org.cloud.smart</groupId>
 			<artifactId>cloudsmart-co</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>${cloud.smart.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.spec</groupId>

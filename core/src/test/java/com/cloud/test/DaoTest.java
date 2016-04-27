@@ -1,20 +1,16 @@
 package com.cloud.test;
 
-import static org.junit.Assert.fail;
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cloud.admin.dao.CategoryDAO;
-import com.cloud.admin.dao.CategoryDAOImpl;
-import com.cloud.admin.dao.SqliteDAO;
-import com.cloud.admin.model.Category;
+import com.cloud.admin.model.User;
+import com.cloud.admin.service.impl.UserDAOImpl;
+
+import junit.framework.TestCase;
 
 public class DaoTest extends TestCase {
-	CategoryDAOImpl cdao = new CategoryDAOImpl();
+	UserDAOImpl cdao = new UserDAOImpl();
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("===========Create table=============");
@@ -33,7 +29,7 @@ public class DaoTest extends TestCase {
 		 assertNotNull(cdao.connect());
 		 //cdao.createTable();
 		//fail("Not yet implemented");
-		 cdao.save(new Category(0, "test0"));
+		 cdao.save(new User(0, "test0"));
 		 assertEquals(1, cdao.listAll().size());
 	}
 

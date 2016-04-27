@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class Customer extends ModelAbstact {
 	public String address;
+	
+	public Customer(long id, String name){
+		super(id, name);
+	}
 	public String getAddress() {
 		return address;
 	}

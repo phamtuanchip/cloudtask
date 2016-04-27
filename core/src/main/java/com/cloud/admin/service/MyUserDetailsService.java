@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.cloud.admin.dao.UserDAO;
 import com.cloud.admin.model.User;
 
 public class MyUserDetailsService implements UserDetailsService{

@@ -35,8 +35,10 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cloud.admin.dao.GalleryDAOImpl;
 import com.cloud.admin.model.Image;
+import com.cloud.admin.service.TaskService;
+import com.cloud.admin.service.TaskServiceFactory;
+import com.cloud.admin.service.impl.GalleryDAOImpl;
 import com.cloud.log.LogShow;
 import com.cloud.model.Blog;
 import com.cloud.model.Notification;
@@ -44,8 +46,6 @@ import com.cloud.model.Subject;
 import com.cloud.model.Task;
 import com.cloud.model.UploadFile;
 import com.cloud.model.User;
-import com.cloud.service.TaskService;
-import com.cloud.service.TaskServiceFactory;
 
 @Path("/rest")
 @Component
