@@ -5,10 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.naming.AuthenticationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
-import org.bson.BSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -22,10 +19,6 @@ import com.cloud.mappers.UserMapper;
 import com.cloud.model.Notification;
 import com.cloud.model.Task;
 import com.cloud.model.User;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.json.JsonGeneratorImpl;
-import com.fasterxml.jackson.core.util.JsonGeneratorDelegate;
-import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 

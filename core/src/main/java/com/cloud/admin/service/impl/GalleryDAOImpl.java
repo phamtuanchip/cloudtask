@@ -106,6 +106,18 @@ public class GalleryDAOImpl extends SqliteDAOImpl<Image> implements ImageDAO{
 		
 	}
 
+	@Override
+	public String buildInsert(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String buildUpdate(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
   
 
 	 

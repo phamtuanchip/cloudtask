@@ -126,6 +126,20 @@ public class CategoryDAOImpl extends SqliteDAOImpl<Category> implements Category
 		
 	}
 
+
+	@Override
+	public String buildInsert(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String buildUpdate(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
  
 
 	 

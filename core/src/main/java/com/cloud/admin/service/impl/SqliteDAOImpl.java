@@ -10,16 +10,14 @@ import java.util.List;
 
 import com.cloud.admin.dao.DAOAbstract;
 import com.cloud.admin.dao.DAOInterface;
-import com.cloud.admin.model.Customer;
 import com.cloud.admin.model.ModelAbstact;
-import com.cloud.admin.model.User;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
 public abstract class SqliteDAOImpl<T> extends DAOAbstract implements DAOInterface<T> {
 	private Connection c ;
 	public static String SPACE = " " ;
 	public static String SYNTAX = "', '";
-	public static String CLOSE =");";
+	public static String CLOSE ="');";
 	
 	public Connection connect() {
 		dbType = "sqlite";
@@ -118,8 +116,13 @@ public abstract class SqliteDAOImpl<T> extends DAOAbstract implements DAOInterfa
 	public String buildInsert(ModelAbstact obj) {
 		StringBuffer sb = new StringBuffer("INSERT INTO");
 		sb.append(SPACE).append(table).append(SPACE).append(structureInsert).append(SPACE).append("VALUES('").append(obj.getName()).append(SYNTAX)
+		.append(obj.getNote()).append(SYNTAX).append(ISO8601Utils.format(obj.getCreatedDate())).append(SYNTAX).append(ISO8601Utils.format(obj.getLastUpdated()));
+		return sb.toString();
+	}
+	public String buildUpdate(ModelAbstact obj) {
+		StringBuffer sb = new StringBuffer("UPDATE TABLE");
+		sb.append(SPACE).append(table).append(SPACE).append(structureInsert).append(SPACE).append("VALUES('").append(obj.getName()).append(SYNTAX)
 		.append(obj.getNote()).append(SYNTAX).append(ISO8601Utils.format(obj.getCreatedDate()));
 		return sb.toString();
 	}
-	
 }

@@ -106,6 +106,16 @@ public class HumanDAOImpl extends SqliteDAOImpl<Human> implements HumanDAO {
 		// TODO Auto-generated method stub
 		return c;
 	}
+	@Override
+	public String buildInsert(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String buildUpdate(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	 
 	 

@@ -8,9 +8,9 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.cloud.admin.model.Customer;
+import com.cloud.admin.model.ModelAbstact;
 import com.cloud.admin.model.User;
 import com.cloud.admin.service.CustomerDAO;
-import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
 public class CustomerDAOImpl extends SqliteDAOImpl<Customer> implements CustomerDAO {
 
@@ -117,22 +117,35 @@ public class CustomerDAOImpl extends SqliteDAOImpl<Customer> implements Customer
 	}
 
 	@Override
-	public String buildInsert(Customer obj) {
+	public String buildInsert(ModelAbstact obj) {
+		Customer obj2 = (Customer)obj;
 		StringBuffer sb = new StringBuffer(super.buildInsert(obj));
-		sb.append(SYNTAX).append(obj.getAddress())
-		.append(SYNTAX).append(obj.getSex())
-		.append(SYNTAX).append(obj.getPhone())
-		.append(SYNTAX).append(obj.getEmail())
-		.append(SYNTAX).append(obj.getCard())
-		.append(SYNTAX).append(obj.getTaxNum())
-		.append(SYNTAX).append(obj.getType())
-		.append(SYNTAX).append(obj.getDob())
-		.append(SYNTAX).append(obj.getUid()).append(SPACE).append(CLOSE);
+		sb.append(SYNTAX).append(obj2.getAddress())
+		.append(SYNTAX).append(obj2.getSex())
+		.append(SYNTAX).append(obj2.getPhone())
+		.append(SYNTAX).append(obj2.getEmail())
+		.append(SYNTAX).append(obj2.getCard())
+		.append(SYNTAX).append(obj2.getTaxNum())
+		.append(SYNTAX).append(obj2.getType())
+		.append(SYNTAX).append(obj2.getDob())
+		.append(SYNTAX).append(obj2.getUid()).append(CLOSE);
 		return sb.toString();
 	}
 
 	@Override
-	public String buildUpdate(Customer obj) {
+	public String buildUpdate(ModelAbstact obj) {
+		StringBuffer sb = new StringBuffer(super.buildUpdate(obj));
+		return null;
+	}
+
+	@Override
+	public String buildInsert(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String buildUpdate(Object obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

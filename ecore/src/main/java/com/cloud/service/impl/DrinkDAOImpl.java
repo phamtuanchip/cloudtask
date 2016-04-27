@@ -114,6 +114,18 @@ public class DrinkDAOImpl extends SqliteDAOImpl<Technology> implements Technolog
 		return null;
 	}
 
+	@Override
+	public String buildInsert(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String buildUpdate(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
  
 	
 }
