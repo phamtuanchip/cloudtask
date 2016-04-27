@@ -4,7 +4,22 @@ import java.util.Date;
 
 public class Customer extends ModelAbstact {
 	public String address;
+	public String phone;
+	public String mobile;
+	public String email;
+	public String card;
+	public String TaxNum;
+	public String type;
+	public Date dob;
+	public String sex;
+	public String uid;
 	
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	public Customer(long id, String name){
 		super(id, name);
 	}
@@ -62,13 +77,6 @@ public class Customer extends ModelAbstact {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public String phone;
-	public String mobile;
-	public String email;
-	public String card;
-	public String TaxNum;
-	public String type;
-	public Date dob;
-	public String sex;
+	
 
 }

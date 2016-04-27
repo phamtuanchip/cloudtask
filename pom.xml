@@ -138,6 +138,8 @@
 		<module>score</module>	
 		<module>resource</module>
 		<module>cloud</module>
+		<module>sweb</module>
+		<module>eweb</module>
 		<module>countdown</module>
 		<module>profile</module>
 		<module>blog</module>

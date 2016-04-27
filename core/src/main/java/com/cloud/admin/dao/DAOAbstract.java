@@ -30,6 +30,7 @@ public abstract class DAOAbstract<T>  {
 	public abstract  ResultSet selectFromTable() ;
 	public abstract  T tableToObject(ResultSet rs); 
 	
-
+	public abstract  String buildInsert(T obj); 
+	public abstract  String buildUpdate(T obj); 
 	
 }
