@@ -15,7 +15,16 @@ public abstract class ModelAbstact implements Serializable {
 	public Date createdDate;
 	public Date lastUpdated;
 	public String note;
+	public int status;
 	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public ModelAbstact() {
 		// TODO Auto-generated constructor stub
 	}

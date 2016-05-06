@@ -145,6 +145,7 @@
 		<module>blog</module>
 		<module>gallery</module>
 		<module>chat</module>
+		<module>news</module>
 	</modules>
 
 	<build>
