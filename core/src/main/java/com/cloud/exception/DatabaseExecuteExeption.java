@@ -1,10 +1,15 @@
 package com.cloud.exception;
 
-public class DatabaseExecuteExeption extends Exception {
+public class DatabaseExecuteExeption extends CloudException {
+
+	public DatabaseExecuteExeption(String msg) {
+		super(msg);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	 
 
 }

@@ -16,7 +16,12 @@ public class User extends Customer implements UserDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	public User(long id, String name, String pass) {
+		super(id, name);
+		this.username = name;
+		// TODO Auto-generated constructor stub
+		this.password = pass;
+	}
 	/**
 	 * 
 	 */

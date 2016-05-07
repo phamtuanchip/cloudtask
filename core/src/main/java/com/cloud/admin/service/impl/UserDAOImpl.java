@@ -5,10 +5,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import javax.naming.AuthenticationException;
 import javax.sql.DataSource;
 
+import com.cloud.admin.model.Customer;
 import com.cloud.admin.model.User;
 import com.cloud.admin.service.UserDAO;
+import com.cloud.exception.FieldRequireException;
+import com.cloud.exception.NoUserException;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
 public class UserDAOImpl extends SqliteDAOImpl<User> implements UserDAO {
@@ -19,6 +23,7 @@ public class UserDAOImpl extends SqliteDAOImpl<User> implements UserDAO {
 		structureCreate = STRUCTURE ;
 		structureUpdate = UPDATE_S;
 		structureInsert = INSERT_S;
+		//sqlWhere = WHERE_S;
 		//createTable();
 	}
 	
@@ -28,7 +33,11 @@ public class UserDAOImpl extends SqliteDAOImpl<User> implements UserDAO {
 		int status =-1;
 		try {
 			st = connect().createStatement();
-			String isql = "INSERT INTO "+table+" "+structureInsert+" VALUES('"+obj.getName()+"', '"+obj.getNote()+"', '"+ISO8601Utils.format(obj.getCreatedDate())+"', '"+ISO8601Utils.format(obj.getLastUpdated())+"');";
+			String  
+			isql = new StringBuffer(buildInsert(obj)).append(SYNTAX).append(obj.getUsername())
+			.append(SYNTAX)
+			.append(obj.getPassword())
+			.append(CLOSE).toString();
 			System.out.println(isql);
 			st.executeUpdate(isql);
 			st.close();
@@ -79,13 +88,21 @@ public class UserDAOImpl extends SqliteDAOImpl<User> implements UserDAO {
 	@Override
 	public User findByUsername(String username) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public User search(User obj) {
 		// TODO Auto-generated method stub
-		return null;
+		if(obj.getId() > 0)
+			try {
+				throw new NoUserException(String.valueOf(obj.id));
+			} catch (NoUserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return find(String.valueOf(obj.getId()));
 	}
 
 	@Override
@@ -123,6 +140,33 @@ public class UserDAOImpl extends SqliteDAOImpl<User> implements UserDAO {
 
 	@Override
 	public String buildUpdate(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User login(User u) throws FieldRequireException, AuthenticationException {
+		// TODO Auto-generated method stub
+		if(u.getUsername().isEmpty()) throw new FieldRequireException("Username isEmpty");
+		else if (u.getPassword().isEmpty()) throw new FieldRequireException("Password isEmpty");
+		return search(u);
+	}
+
+	@Override
+	public User logout(User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer createUser(Customer c, User u) {
+		// TODO Auto-generated method stub
+		c.setUid(String.valueOf(u.getId()));
+		return c;
+	}
+
+	@Override
+	public String buildWhere(Object obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

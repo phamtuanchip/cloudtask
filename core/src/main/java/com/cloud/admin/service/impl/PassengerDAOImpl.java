@@ -112,6 +112,12 @@ public class PassengerDAOImpl extends SqliteDAOImpl<Passenger> implements Passen
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String buildWhere(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	 
 
 }

@@ -24,6 +24,7 @@ public abstract class SqliteDAOImpl<T> extends DAOAbstract implements DAOInterfa
 		sqlCreate = "CREATE TABLE IF NOT EXISTS " + table +" "+ structureCreate;
 		sqlDrop = "DROP TABLE " + table + ";" ;
 		sqlSelect = "SELECT * FROM " + table + ";" ;
+		sqlWhere = "SELECT * FROM " + table + " where id = " ;
 		try {
 			if(c == null || c.isClosed())
 				Class.forName("org.sqlite.JDBC");
@@ -108,10 +109,27 @@ public abstract class SqliteDAOImpl<T> extends DAOAbstract implements DAOInterfa
 	}
 	@Override
 	public T find(String id) {
-		sqlWhere = sqlSelect + "where id =" + id;
+		sqlWhere += id;
 		ResultSet rs = select(sqlWhere);
 		return (T) tableToObject(rs);
 	}
+	
+	public ResultSet select(String sql) {
+		Statement st;
+		try {
+			st = connect().createStatement();
+			System.out.println(sql);
+			ResultSet rs = st.executeQuery(sql);
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return null;
+	 }
 
 	public String buildInsert(ModelAbstact obj) {
 		StringBuffer sb = new StringBuffer("INSERT INTO");

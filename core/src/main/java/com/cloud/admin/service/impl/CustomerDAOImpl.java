@@ -150,6 +150,12 @@ public class CustomerDAOImpl extends SqliteDAOImpl<Customer> implements Customer
 		return null;
 	}
 
+	@Override
+	public String buildWhere(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	 
 
 

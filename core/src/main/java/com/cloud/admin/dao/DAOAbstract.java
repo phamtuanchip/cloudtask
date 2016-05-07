@@ -32,5 +32,6 @@ public abstract class DAOAbstract<T>  {
 	
 	public abstract  String buildInsert(T obj); 
 	public abstract  String buildUpdate(T obj); 
+	public abstract  String buildWhere(T obj); 
 	
 }

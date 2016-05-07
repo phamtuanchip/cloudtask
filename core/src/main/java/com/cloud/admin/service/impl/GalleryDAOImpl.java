@@ -118,6 +118,12 @@ public class GalleryDAOImpl extends SqliteDAOImpl<Image> implements ImageDAO{
 		return null;
 	}
 
+	@Override
+	public String buildWhere(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
   
 
 	 
